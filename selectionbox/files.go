@@ -3,6 +3,7 @@ package selectionbox
 import (
 	"io/ioutil"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -10,6 +11,19 @@ import (
 func ReadInput() []string {
 	data := read()
 	return strings.Split(data, "\n")
+}
+
+// ConvertStringsToInts - converts input to ints if appropriate
+func ConvertStringsToInts(s []string) []int {
+	ints := make([]int, len(s))
+	for i, v := range s {
+		val, err := strconv.Atoi(v)
+		if err != nil {
+			panic(err)
+		}
+		ints[i] = val
+	}
+	return ints
 }
 
 //ReadGroupedInput returns groups of input separated by empty lines
